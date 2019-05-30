@@ -8,7 +8,6 @@ Prototype Refactor
 
 */
 
-
 /*
   Object oriented design is commonly used in video games.  For this part of the assignment you will be implementing several constructor functions with their correct inheritance hierarchy.
 
@@ -26,28 +25,31 @@ Prototype Refactor
   * dimensions (These represent the character's size in the video game)
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
-function GameObject(attributes) {
-  this.createdAt = attributes.createdAt;
-  this.name = attributes.name;
-  this.dimensions = attributes.dimensions;
-  this.destroy = function() {
+class GameObject {
+  constructor(attributes) {
+    this.createdAt = attributes.createdAt;
+    this.name = attributes.name;
+    this.dimensions = attributes.dimensions;
+  }
+  destroy() {
     alert(`${this.name} was removed from the game`);
     return `${this.name} was removed from the game`;
-  };
+  }
 }
-
 /*
   === CharacterStats ===
   * healthPoints
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
-function CharacterStats(attributes) {
-  GameObject.call(this, attributes);
-  this.healthPoints = attributes.healthPoints;
-  this.takeDamage = function() {
+class CharacterStats extends GameObject {
+  constructor(attributes) {
+    super(attributes);
+    this.healthPoints = attributes.healthPoints;
+  }
+  takeDamage() {
     return `${this.name} took damage`;
-  };
+  }
 }
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -58,14 +60,16 @@ function CharacterStats(attributes) {
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
-function Humanoid(attributes) {
-  CharacterStats.call(this, attributes);
-  this.team = attributes.team;
-  this.weapons = attributes.weapons;
-  this.language = attributes.language;
-  this.greet = function() {
+class Humanoid extends CharacterStats {
+  constructor(attributes) {
+    super(attributes);
+    this.team = attributes.team;
+    this.weapons = attributes.weapons;
+    this.language = attributes.language;
+  }
+  greet() {
     return `${this.name} offers a greeting in ${this.language}`;
-  };
+  }
 }
 /*
  * Inheritance chain: GameObject -> CharacterStats -> Humanoid
