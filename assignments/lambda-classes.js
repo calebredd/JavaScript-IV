@@ -22,11 +22,10 @@ class Person {
   constructor(attributes) {
     this.name = attributes.name;
     this.age = attributes.age;
-    this.favLanguage = attributes.favLanguage;
     this.location = attributes.location;
   }
   speak() {
-    return `Hello my name is ${this.name}, I am from ${this.location}`;
+    return `Hello my name is ${this.name}, I am from ${this.location}.`;
   }
 }
 
@@ -45,7 +44,19 @@ class Instructor extends Person {
   constructor(attributes) {
     super(attributes);
     this.specialty = attributes.specialty;
+    this.favLanguage = attributes.favLanguage;
     this.catchPhrase = attributes.catchPhrase;
+  }
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
+  score(student) {
+    student.grade +=
+      Math.floor(Math.random() * 20) * (Math.round(Math.random()) * 2 - 1);
+    return student.graduate();
   }
 }
 
@@ -62,6 +73,14 @@ class Instructor extends Person {
 class ProjectManager extends Instructor {
   constructor(attributes) {
     super(attributes);
+    this.gradClassName = attributes.gradClassName;
+    this.favInstructor = attributes.favInstructor;
+  }
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
 }
 
@@ -80,22 +99,76 @@ class ProjectManager extends Instructor {
 class Student extends Person {
   constructor(attributes) {
     super(attributes);
+    this.previousBackground = attributes.previousBackground;
+    this.className = attributes.className;
+    this.favSubjects = attributes.favSubjects;
+    this.grade = 50;
+  }
+  listsSubjects() {
+    console.log("My favorite subjects are:");
+    this.favSubjects.forEach(function(e) {
+      console.log(`${e}`);
+    });
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge for ${subject}`;
+  }
+  graduate() {
+    if (this.grade >= 70) {
+      return `${this.name} passed all of their classes and graduated from ${
+        this.className
+      } with a final grade of ${this.grade}%`;
+    } else {
+      return `${
+        this.name
+      } has not passed all of their classes and needs to keep studying.\n${
+        this.name
+      }'s current grade is a ${this.grade}%.`;
+    }
   }
 }
 
-//       * ** IMPORTANT ** - You'll need to create 2 - 3 objects for each class and test them according to their unique Attributes. For example:
+//       * ** IMPORTANT ** - You'll need to create 2 - 3 objects for each class and test them according to their unique Attributes.
 
-const fred = new Instructor({
-  name: "Fred",
-  location: "Bedrock",
-  age: 37,
+const dan = new Instructor({
+  name: "Dan Fehner",
+  location: "SLC",
+  age: 33,
   favLanguage: "JavaScript",
   specialty: "Front-end",
-  catchPhrase: `Don't forget the homies`
+  catchPhrase: `I don't play the banjo`
 });
-console.log(fred);
-console.log(fred.speak());
 
+const guillermo = new ProjectManager({
+  name: "Guillermo",
+  location: "Florida",
+  age: 26,
+  favLanguage: "Python",
+  gradClassName: "WEB20",
+  favInstructor: "Dan Levy"
+});
+
+const danica = new Student({
+  name: "Danica Valdez",
+  location: "California",
+  age: 17,
+  favSubjects: ["CSS", "HTML", "JAVASCRIPT"],
+  previousBackground: "Alaskan Fishing",
+  className: "webpt7"
+});
+
+console.log(dan.speak());
+console.log(dan.catchPhrase);
+console.log(dan.demo("ES6"));
+console.log(guillermo.speak());
+console.log(guillermo.favInstructor + " is my favorite instructor");
+console.log(guillermo.standUp("webpt7"));
+console.log(danica.speak());
+console.log("Before Lambda I was really into "+danica.previousBackground);
+danica.listsSubjects();
 
 // #### Stretch Problem
 
@@ -104,3 +177,19 @@ console.log(fred.speak());
 // * Add a graduate method to a student.
 //   * This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
 //   * If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+gradRate = (instructor, student) => {
+  let months=0;
+  while (student.grade < 70) {
+    console.log(instructor.score(student));
+    months++;
+  }
+  if(months>52){
+    months=Math.round(months/52)+" years";
+  }else if(months>4){
+    months=Math.round(months/4) +" months";
+  }else{
+    months=months+" weeks";
+  }
+  return `It only took ${student.name} ${months} to complete the program`;
+};
+console.log(gradRate(dan,danica));
