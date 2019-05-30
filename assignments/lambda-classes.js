@@ -103,6 +103,7 @@ class Student extends Person {
     this.className = attributes.className;
     this.favSubjects = attributes.favSubjects;
     this.grade = 50;
+    this.gender=attributes.gender;
   }
   listsSubjects() {
     console.log("My favorite subjects are:");
@@ -118,13 +119,13 @@ class Student extends Person {
   }
   graduate() {
     if (this.grade >= 70) {
-      return `${this.name} passed all of their classes and graduated from ${
+      return `${this.name} passed all of ${this.gender} classes and graduated from ${
         this.className
       } with a final grade of ${this.grade}%`;
     } else {
       return `${
         this.name
-      } has not passed all of their classes and needs to keep studying.\n${
+      } has not passed all of ${this.gender} classes and needs to keep studying.\n${
         this.name
       }'s current grade is a ${this.grade}%.`;
     }
@@ -141,14 +142,46 @@ const dan = new Instructor({
   specialty: "Front-end",
   catchPhrase: `I don't play the banjo`
 });
+const pope = new Instructor({
+  name: "Pope",
+  location: "Rome, Italy",
+  age: 35,
+  favLanguage: "JavaScript",
+  specialty: "Front-end",
+  catchPhrase: `I have lots of video games`
+});
+const josh = new Instructor({
+  name: "Josh Knoell",
+  location: "Silicon Valley",
+  age: 38,
+  favLanguage: "JavaScript",
+  specialty: "Front-end",
+  catchPhrase: `I ACTUALLY do play the banjo!!!`
+});
 
 const guillermo = new ProjectManager({
-  name: "Guillermo",
+  name: "Guillermo AKA Sapinspys",
   location: "Florida",
   age: 26,
   favLanguage: "Python",
   gradClassName: "WEB20",
   favInstructor: "Dan Levy"
+});
+const sasha = new ProjectManager({
+  name: "Sasha Taylor",
+  location: "California",
+  age: 26,
+  favLanguage: "PHP",
+  gradClassName: "WEB12",
+  favInstructor: "Dan Fehner"
+});
+const manu = new ProjectManager({
+  name: "Manu",
+  location: "Hawaii",
+  age: 26,
+  favLanguage: "GoLang",
+  gradClassName: "WEB10",
+  favInstructor: "Josh Knoell"
 });
 
 const danica = new Student({
@@ -157,18 +190,63 @@ const danica = new Student({
   age: 17,
   favSubjects: ["CSS", "HTML", "JAVASCRIPT"],
   previousBackground: "Alaskan Fishing",
-  className: "webpt7"
+  className: "webpt7",
+  gender:"her"
+});
+const dj = new Student({
+  name: "DJ Coleman",
+  location: "California",
+  age: 20,
+  favSubjects: ["React", "Native", "Vue"],
+  previousBackground: "Music Production",
+  className: "webpt7",
+  gender: "his"
+});
+const leif = new Student({
+  name: "Leif Geirchberg",
+  location: "Montana",
+  age: 24,
+  favSubjects: ["GIT", "GITHUB", "Console"],
+  previousBackground: "Barefoot Running",
+  className: "webpt7",
+  gender: "his"
 });
 
 console.log(dan.speak());
 console.log(dan.catchPhrase);
 console.log(dan.demo("ES6"));
+
+console.log(josh.speak());
+console.log(josh.catchPhrase);
+console.log(josh.demo("React"));
+
+console.log(pope.speak());
+console.log(pope.catchPhrase);
+console.log(pope.demo("Python"));
+
 console.log(guillermo.speak());
 console.log(guillermo.favInstructor + " is my favorite instructor");
 console.log(guillermo.standUp("webpt7"));
+
+console.log(sasha.speak());
+console.log(sasha.favInstructor + " is my favorite instructor");
+console.log(sasha.standUp("webpt7"));
+
+console.log(manu.speak());
+console.log(manu.favInstructor + " is my favorite instructor");
+console.log(manu.standUp("webpt7"));
+
 console.log(danica.speak());
 console.log("Before Lambda I was really into "+danica.previousBackground);
 danica.listsSubjects();
+
+console.log(dj.speak());
+console.log("Before Lambda I was really into "+dj.previousBackground);
+dj.listsSubjects();
+
+console.log(leif.speak());
+console.log("Before Lambda I was really into "+leif.previousBackground);
+leif.listsSubjects();
 
 // #### Stretch Problem
 
@@ -179,6 +257,9 @@ danica.listsSubjects();
 //   * If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 gradRate = (instructor, student) => {
   let months=0;
+  console.log(`${
+    student.name
+  }'s current grade is a ${student.grade}%.`);
   while (student.grade < 70) {
     console.log(instructor.score(student));
     months++;
@@ -190,6 +271,6 @@ gradRate = (instructor, student) => {
   }else{
     months=months+" weeks";
   }
-  return `It only took ${student.name} ${months} to complete the program`;
+  return `It only took ${student.name} ${months} to complete the program,\n ${student.gender} main instructor was ${instructor.name}`;
 };
-console.log(gradRate(dan,danica));
+console.log(gradRate(pope,leif));
