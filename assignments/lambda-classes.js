@@ -215,41 +215,41 @@ const leif = new Student({
   gender: "his"
 });
 
-// console.log(dan.speak());
-// console.log(dan.catchPhrase);
-// console.log(dan.demo("ES6"));
+console.log(dan.speak());
+console.log(dan.catchPhrase);
+console.log(dan.demo("ES6"));
 
-// console.log(josh.speak());
-// console.log(josh.catchPhrase);
-// console.log(josh.demo("React"));
+console.log(josh.speak());
+console.log(josh.catchPhrase);
+console.log(josh.demo("React"));
 
-// console.log(pope.speak());
-// console.log(pope.catchPhrase);
-// console.log(pope.demo("Python"));
+console.log(pope.speak());
+console.log(pope.catchPhrase);
+console.log(pope.demo("Python"));
 
-// console.log(guillermo.speak());
-// console.log(guillermo.favInstructor + " is my favorite instructor");
-// console.log(guillermo.standUp("webpt7"));
+console.log(guillermo.speak());
+console.log(guillermo.favInstructor + " is my favorite instructor");
+console.log(guillermo.standUp("webpt7"));
 
-// console.log(sasha.speak());
-// console.log(sasha.favInstructor + " is my favorite instructor");
-// console.log(sasha.standUp("webpt7"));
+console.log(sasha.speak());
+console.log(sasha.favInstructor + " is my favorite instructor");
+console.log(sasha.standUp("webpt7"));
 
-// console.log(manu.speak());
-// console.log(manu.favInstructor + " is my favorite instructor");
-// console.log(manu.standUp("webpt7"));
+console.log(manu.speak());
+console.log(manu.favInstructor + " is my favorite instructor");
+console.log(manu.standUp("webpt7"));
 
-// console.log(danica.speak());
-// console.log("Before Lambda I was really into "+danica.previousBackground);
-// danica.listsSubjects();
+console.log(danica.speak());
+console.log("Before Lambda I was really into "+danica.previousBackground);
+danica.listsSubjects();
 
-// console.log(dj.speak());
-// console.log("Before Lambda I was really into "+dj.previousBackground);
-// dj.listsSubjects();
+console.log(dj.speak());
+console.log("Before Lambda I was really into "+dj.previousBackground);
+dj.listsSubjects();
 
-// console.log(leif.speak());
-// console.log("Before Lambda I was really into "+leif.previousBackground);
-// leif.listsSubjects();
+console.log(leif.speak());
+console.log("Before Lambda I was really into "+leif.previousBackground);
+leif.listsSubjects();
 
 // #### Stretch Problem
 
